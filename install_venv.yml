@@ -1,0 +1,35 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update package repositories
+      apt:
+        update_cache: yes
+
+    - name: Ensure python3-venv is installed
+      apt:
+        name: python3-venv
+        state: present
+
+    - name: Ensure python3-pip is installed
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Create virtual environment
+      command: python3 -m venv /opt/kollaENV
+      args:
+        creates: /opt/kollaENV
+
+    - name: Install required Python packages
+      pip:
+        name:
+          - packaging
+          - ansible
+          - jinja2
+          - netaddr
+          - pyyaml
+          - requests
+          - docker
+        virtualenv: /opt/kollaENV
+

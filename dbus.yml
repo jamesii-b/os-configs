@@ -1,0 +1,19 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Ensure build dependencies are installed
+      apt:
+        name:
+          - pkg-config
+          - cmake
+          - build-essential
+          - libdbus-1-dev
+          - libglib2.0-dev  # Added this line to install the GLib development package
+        state: present
+
+    - name: Install dbus-python in the virtual environment
+      pip:
+        name:
+          - dbus-python
+        virtualenv: /opt/kollaENV
+
