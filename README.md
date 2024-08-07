@@ -14,7 +14,13 @@
 
 This downloads all the required necessary packages
 
+- `terraform plan`
+
+Checks if there are no errors
+
 - `terraform apply`
+
+Provisions the Infrastruture
 
 ## Kolla Ansible Usage
 
