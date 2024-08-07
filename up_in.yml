@@ -1,0 +1,20 @@
+---
+- name: Update and upgrade packages and install necessary tools
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Install curl and apt-transport-https
+      apt:
+        name:
+          - curl
+          - apt-transport-https
+        state: present
+
